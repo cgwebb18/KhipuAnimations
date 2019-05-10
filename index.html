@@ -4,9 +4,28 @@
 <head>
   <title>Khipu Animations</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
+  <!-- https://stackoverflow.com/questions/4644027/how-to-automatically-reload-a-page-after-a-given-period-of-inactivity -->
+  <script>
+    var time = new Date().getTime();
+     $(document.body).bind("mousemove keypress", function(e) {
+         time = new Date().getTime();
+     });
+
+     function refresh() {
+         if(new Date().getTime() - time >= 150000) {
+             window.location.reload(true);
+           }
+         else {
+          setTimeout(refresh, 10000);
+           }
+     }
+
+     setTimeout(refresh, 10000);
+</script>
   <div class='container'>
     <video class='k_vid' id='fig8' controls>
       <source src='Figure-8 Knot Animation Final.mp4' type='video/mp4'>
